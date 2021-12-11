@@ -246,4 +246,3 @@ btnAceptar.grid(row=4,column=2,columnspan=2)
 # btnPrueba.grid(row=5,column=0)
 
 
-root.mainloop()
