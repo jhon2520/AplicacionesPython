@@ -184,7 +184,6 @@ def mover_mouse(sc):
     time.sleep(segundos)
     mousex2,mousey2 = pg.position()
 
-
     if((mousex == mousex2) and (mousey == mousey2)):
         pg.moveRel(10,0)
         pg.press(["up"])

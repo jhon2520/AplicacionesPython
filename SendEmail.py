@@ -63,3 +63,75 @@ pg.press(["tab","enter"])
 # print(pg.KEY_NAMES)
 
 #C:\Users\Jhon Romero\Desktop\bot-imgs
+
+# buscar_color1 = 'let color = document.getElementById("cphMostrarPaginas_lblColorAnimal")'
+# buscar_color2 = 'let valorColor = color.innerText'
+# buscar_color3 = "copy(valorColor)"
+
+
+# buscar_nacimiento1 = 'let fecha = document.getElementById("cphMostrarPaginas_lblFecNacimiento")'
+# buscar_nacimiento2 = 'let valorFecha = fecha.innerText'
+# buscar_nacimiento3 = 'copy(valorFecha)'
+
+# buscar_padre1 = "let padre = document.getElementById('cphMostrarPaginas_lblNumeroPadre')"
+# buscar_padre2 = "let valorPadre = padre.innerText"
+# buscar_padre3 = "copy(valorPadre)"
+
+# buscar_madre1 = "let madre = document.getElementById('cphMostrarPaginas_lblNumeroMadre')"
+# buscar_madre2 = "let valorMadre = madre.innerText"
+# buscar_madre3 = "copy(valorMadre)"
+
+
+# buscar_propietario1 = "let pr = document.getElementById('cphMostrarPaginas_lblNombrePropietario')"
+# buscar_propietario2 = "let nPr = pr.innerText"
+# buscar_propietario3 = "copy(nPr)"
+
+
+     # pg.hotkey("alt","tab")
+        # time.sleep(1)
+        # pg.write(buscar_nacimiento1)
+        # press_enter()
+        # time.sleep(1)
+        # pg.write(buscar_nacimiento2)
+        # press_enter()
+        # time.sleep(1)
+        # pg.write(buscar_nacimiento3)
+        # press_enter()
+        # time.sleep(1)
+        
+
+               # pg.hotkey("alt","tab")
+        # time.sleep(1)
+        # pg.write(buscar_padre1)
+        # press_enter()
+        # time.sleep(1)
+        # pg.write(buscar_padre2)
+        # press_enter()
+        # time.sleep(1)
+        # pg.write(buscar_padre3)
+        # press_enter()
+        # time.sleep(1)
+
+               # pg.hotkey("alt","tab")
+        # time.sleep(1)
+        # pg.write(buscar_madre1)
+        # press_enter()
+        # time.sleep(1)
+        # pg.write(buscar_madre2)
+        # press_enter()
+        # time.sleep(1)
+        # pg.write(buscar_madre3)
+        # press_enter()
+        # time.sleep(1)
+
+            # pg.hotkey("alt","tab")
+    # time.sleep(1)
+    # pg.write(buscar_propietario1)
+    # press_enter()
+    # time.sleep(1)
+    # pg.write(buscar_propietario2)
+    # press_enter()
+    # time.sleep(1.5)
+    # pg.write(buscar_propietario3)
+    # press_enter()
+    # time.sleep(1.5)
