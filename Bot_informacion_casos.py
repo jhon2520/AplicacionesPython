@@ -20,9 +20,10 @@ ruta_completa = os.path.join(ruta,nombre_app)
 
 
 root = Tk()
+segundos = 1
 lblFont = font.Font(family="poppins",size=8)
-w = 680
-h = 400
+w = 660
+h = 460
 ws = root.winfo_screenwidth()
 hs = root.winfo_screenheight()
 x = (ws/2) - (w/2)
@@ -36,6 +37,7 @@ def btn_hover_enter(e):
     e.widget["background"] = "#2F86A6"
 def btn_hover_leave(e):
     e.widget["background"] = "#345B63"
+
     
 
 #Crear Frame
@@ -45,7 +47,7 @@ backFrame.pack(fill="both",expand=True)
 
 #label superior
 lblSuperior = Label(backFrame,text="Bienvenido al Bot  \n Siga los siguientes pasos para el correcto funcionamiento.\n ",background=colorFrame,fg=lblFontColor)
-lblSuperior.grid(row=0, column= 1,columnspan=6)
+lblSuperior.grid(row=0, column= 0,columnspan=6)
 lblSuperior["font"] = lblFontColor
 
 #label para espacio
@@ -55,25 +57,51 @@ lblVacia2 = lblVacia
 lblVacia2.grid(row=2,column=0)
 
 #indicaciones
-lblIndicaciones = Label(backFrame,text="1. Debe tener el navegador Chrome instalado. \n2. Disponga de un computador eficiente. \n3. Debe tener abiertos la hoja de excel donde se encuentran los datos en la ventana siguiente a este progama. \n4. La hoja de excel debe tener los valor a buscar en la columna A y libre las siguientes 5 columnas. \n5. Si su computador es lento, seleccione más segundos por proceso; el valor por defecto es 1 segundo. \n6. El bot busca información completa, cada registro debe tener mínimo los 7 caracteres \n7. No debe haber registros en blanco o valores inválidos",justify=LEFT, background=colorFrame,fg=lblFontColor)
+lblIndicaciones = Label(backFrame,text="1. Debe tener el navegador Chrome instalado. \n2. Disponga de un computador eficiente. \n3. Debe tener abiertos la hoja de excel donde se encuentran los datos en la ventana siguiente a este progama. \n4. La hoja de excel debe tener los valor a buscar en la columna A y libre las siguientes 5 columnas. \n5. Si su computador es lento, seleccione más segundos por proceso; el valor por defecto es 1 segundo. \n6. El bot busca información completa, cada registro debe tener mínimo los 7 caracteres \n7. No debe haber registros en blanco o valores inválidos \n8.El bot funciona a través del reconocimiento de imágnes por lo que puede ser necesario capturarlas \nnuevamente al ejecutarse por primera vez.",justify=LEFT, background=colorFrame,fg=lblFontColor)
 lblIndicaciones["font"] = lblFont
-lblIndicaciones.grid(row=3,column=1)
+lblIndicaciones.grid(row=3,column=0, columnspan=2)
 
 lblVacia3 = lblVacia
 lblVacia3.grid(row=4,column=1)
 lblVacia4 = lblVacia
 lblVacia4.grid(row=5,column=1)
 
-#input
+#input segundos
 tbxSegundos = Entry(backFrame,justify=CENTER)
-tbxSegundos.grid(row=6,column=1)
+tbxSegundos.grid(row=6,column=0)
+labelSegundos = Label(backFrame,text="Cantidad de degundos", background=colorFrame,fg=lblFontColor)
+labelSegundos.grid(row=7,column=0)
+
+#input cantidad registros
+tbxRegistros = Entry(backFrame,justify=CENTER)
+tbxRegistros.grid(row=6,column=1)
+labelSegundos = Label(backFrame,text="Cantidad de registros", background=colorFrame,fg=lblFontColor)
+labelSegundos.grid(row=7,column=1)
 
 lblVacia5 = Label(backFrame,text="\n")
-lblVacia5.grid(row=7,column=0)
+lblVacia5.grid(row=8,column=0 )
+
+
+def btn_aceptar():
+
+    tbxValueSeg = tbxSegundos.get()
+    tbxValueRegistros = tbxRegistros.get()
+
+    if (tbxValueSeg.isnumeric() == True and tbxValueRegistros.isnumeric() == True):
+        global segundos
+        segundos = int(tbxValueSeg)
+        global registros
+        registros = int(tbxValueRegistros)
+        print(segundos+1)
+        root.iconify()
+    else:
+        pg.alert("El valor ingresado no corresponde a un valor correcto. \nIngrese solo valores númericos enteros")
+    
+    
 
 #btn
-btnAceptar = Button(backFrame,text="Iniciar Bot",padx=40,pady=6,background=lblFontColor,fg="#fff")
-btnAceptar.grid(row=8 ,column=1,columnspan=2)
+btnAceptar = Button(backFrame,command=btn_aceptar, text="Iniciar Bot",padx=10,pady=6,background=lblFontColor,fg="#fff")
+btnAceptar.grid(row=9 ,column=0,columnspan=2)
 btnAceptar.bind("<Enter>",btn_hover_enter)
 btnAceptar.bind("<Leave>",btn_hover_leave)
 
