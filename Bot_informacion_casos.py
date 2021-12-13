@@ -44,7 +44,7 @@ def pegar_valor():
 
 def press_enter():
     pg.press("enter")
-
+    
 def continuar():
     continuar_bool = False
     while not continuar_bool:
@@ -54,15 +54,52 @@ def continuar():
             continuar_bool = True
             return
 
+def recargar_pagina():
+    pg.hotkey("shift","ctrl","j")
+    pg.press("f5")
+
 def continuar_presionar_lupa():
     continuar_bool = False
+    contador_lupa = 0
     while not continuar_bool:
         btn = pg.locateCenterOnScreen(r"C:\Users\Jhon Romero\Desktop\imagenes_bot\lupa.PNG",grayscale=True,confidence=0.8)
-        # print(btn)
+        time.sleep(0.5)
+        contador_lupa += 1
+
+        if contador_lupa == 15:
+            no_hay_registro()
+            continuar_presionar_lupa()
+            pg.click(btn)
+            continuar_bool = True
+            return
+
+
         if btn != None:
             pg.click(btn)
             continuar_bool = True
             return
+
+def no_hay_registro():
+    pg.hotkey("alt","tab") 
+    mover_horizontal()
+    pg.write("Sin registro")
+    press_enter()
+    pg.press("left")
+    copiar_celda()
+    time.sleep(segundos)
+    pg.hotkey("alt","tab") 
+    time.sleep(segundos)
+    pg.press("f5")
+    time.sleep(segundos)
+    continuar()
+    time.sleep(segundos)
+    presionar_tab(17)
+    time.sleep(segundos)
+    pegar_valor()
+    time.sleep(segundos)
+    presionar_tab(3)
+    press_enter()
+
 
 
 def continuar_logo_consulta():
@@ -94,20 +131,18 @@ def retornar_y_pegar(segundos):
     pegar_valor()
 
 def buscador_html(arreglo,segundos):
-        pg.hotkey("alt","tab")
-        time.sleep(segundos)
-        pg.write(arreglo[0])
-        pg.hotkey("shift","enter")
-        pg.write(arreglo[1])
-        pg.hotkey("shift","enter")
-        pg.write(arreglo[2])
-        pg.press("enter")
-        time.sleep(segundos)
+    pg.hotkey("alt","tab")
+    time.sleep(segundos)
+    pg.write(arreglo[0])
+    pg.hotkey("shift","enter")
+    pg.write(arreglo[1])
+    pg.hotkey("shift","enter")
+    pg.write(arreglo[2])
+    pg.press("enter")
+    time.sleep(segundos)
     
 
-def recargar_pagina():
-    pg.hotkey("shift","ctrl","j")
-    pg.press("f5")
+
 
 
 #Base
@@ -120,7 +155,7 @@ if getattr(sys,"frozen",False):
 elif __file__:
     ruta = os.path.dirname(__file__)
 
-ruta_completa = os.path.join(ruta,nombre_app)
+# ruta_completa = os.path.join(ruta,nombre_app)
 
 
 root = Tk()
@@ -161,7 +196,7 @@ lblVacia2 = lblVacia
 lblVacia2.grid(row=2,column=0)
 
 #indicaciones
-lblIndicaciones = Label(backFrame,text="1. Debe tener el navegador Chrome instalado. \n2. Disponga de un computador eficiente. \n3. Debe tener abiertos la hoja de excel donde se encuentran los datos en la ventana siguiente a este progama. \n4. La hoja de excel debe tener los valor a buscar en la columna A y libre las siguientes 5 columnas. \n5. Si su computador es lento, seleccione más segundos por proceso; el valor por defecto es 1 segundo. \n6. El bot busca información completa, cada registro debe tener mínimo los 7 caracteres \n7. No debe haber registros en blanco o valores inválidos \n8.El bot funciona a través del reconocimiento de imágnes por lo que puede ser necesario capturarlas \nnuevamente al ejecutarse por primera vez.",justify=LEFT, background=colorFrame,fg=lblFontColor)
+lblIndicaciones = Label(backFrame,text="1. Debe tener el navegador Chrome instalado. \n2. Disponga de un computador eficiente. \n3. Debe tener abiertos la hoja de excel donde se encuentran los datos en la ventana siguiente a este progama. \n4. La hoja de excel debe tener los valor a buscar en la columna A y libre las siguientes 5 columnas. \n5. Si su computador es lento, seleccione más segundos por proceso; el valor por defecto es 1 segundo. \n6. El bot busca información completa, cada registro debe tener mínimo los 7 caracteres \n7. No debe haber registros en blanco o valores inválidos \n8. La configuración del teclado debe estar en INGLÉS. \n9.El bot funciona a través del reconocimiento de imágnes por lo que puede ser necesario capturarlas \nnuevamente al ejecutarse por primera vez.",justify=LEFT, background=colorFrame,fg=lblFontColor)
 lblIndicaciones["font"] = lblFont
 lblIndicaciones.grid(row=3,column=0, columnspan=2)
 
@@ -189,7 +224,7 @@ lblVacia5.grid(row=8,column=0 )
 
 def Bot(segundos,registros):
 
-    pg.alert("Iniciando código")
+    pg.alert("Se iniciará el BOT")
     colores = [' let c = document.getElementById("cphMostrarPaginas_lblColorAnimal")','let vC = c.innerText','copy(vC)']
     nacimientos = ['let f = document.getElementById("cphMostrarPaginas_lblFecNacimiento")','let vF = f.innerText','copy(vF)']
     padres = [" let p = document.getElementById('cphMostrarPaginas_lblNumeroPadre')"," let vP = p.innerText"," copy(vP)"]
@@ -209,6 +244,7 @@ def Bot(segundos,registros):
     time.sleep(0.5)
         
     if contadorHorizontal == 0:
+
         time.sleep(segundos)
         mover_vertical()
         copiar_celda()
@@ -224,6 +260,7 @@ def Bot(segundos,registros):
 
         #presionar lupa
         continuar_presionar_lupa()
+        time.sleep(segundos)
 
         # dibujar html presionando el logo
         continuar_logo_consulta()
@@ -302,6 +339,7 @@ def Bot(segundos,registros):
 
         #presionar lupa
         continuar_presionar_lupa()
+        time.sleep(segundos)
 
         # dibujar html presionando el logo
         continuar_logo_consulta()
@@ -352,6 +390,7 @@ def Bot(segundos,registros):
 
         contadorHorizontal+=1
 
+    pg.alert("El BOT ha finalizado, gracias por la espera.")
 
 
 def btn_aceptar():
@@ -370,16 +409,20 @@ def btn_aceptar():
     else:
         pg.alert("El valor ingresado no corresponde a un valor correcto. \nIngrese solo valores númericos enteros")
     
-    
+def btn_cancelar():
+    os._exit(1)
 
-#btn
+#btn aceptar
 btnAceptar = Button(backFrame,command=btn_aceptar, text="Iniciar Bot",padx=10,pady=6,background=lblFontColor,fg="#fff")
-btnAceptar.grid(row=9 ,column=0,columnspan=2)
+btnAceptar.grid(row=9 ,column=0)
 btnAceptar.bind("<Enter>",btn_hover_enter)
 btnAceptar.bind("<Leave>",btn_hover_leave)
 
 
-
+#btn terminar
+btnTerminar = Button(backFrame,command=btn_cancelar,text="Terminar BOT",padx=10,pady=6,
+background="#911F27",fg="#fff")
+btnTerminar.grid(row=9 ,column=1)
 
 
 root.mainloop()
